@@ -1,0 +1,4 @@
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+CoherentNoise = "3547b4d8-3bdb-4c10-a099-d01a31e852e0"
+Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
