@@ -277,11 +277,13 @@ function transformedsampler(sampler, point, cutoff)
     (x, y) -> begin
         edgepointdist = distancetoedgeprojection(x, y, point)
         pointdist = euclidean((x, y), point)
-        if pointdist/(edgepointdist+pointdist) < cutoff
+        dist = pointdist/(edgepointdist+pointdist)
+        if dist < cutoff
             return :unknown
         end
+        movedistratio = (dist - sqrt((dist^2 - cutoff^2)/(1 - cutoff^2))) / cutoff
         topoint = point .- [x, y]
-        topoint .*= (1 - (pointdist/(edgepointdist+pointdist)))^2 * cutoff
+        topoint .*= movedistratio
         sampler(x + topoint[1], y + topoint[2])
     end
 end
